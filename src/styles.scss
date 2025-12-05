@@ -1,0 +1,92 @@
+@use '@angular/material' as mat;
+
+// Angular Material theme setup
+html {
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base layout */
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Prevents horizontal scrollbar */
+  overflow-y: auto; /* Only one vertical scrollbar */
+  font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--mat-sys-surface, #f9f9f9);
+  color: var(--mat-sys-on-surface, #000);
+  font: var(--mat-sys-body-medium);
+  color-scheme: light;
+}
+
+/* Optional smoother scroll feel */
+html {
+  scroll-behavior: smooth;
+}
+
+.snackbar-success {
+  background-color: #4caf50; // green
+  color: #fff;
+}
+
+.snackbar-error {
+  background-color: #f44336; // red
+  color: #fff;
+}
+
+.snackbar-info {
+  background-color: #2196f3; // blue
+  color: #fff;
+}
+
+.mat-mdc-snack-bar-container {
+  border-radius: 8px !important;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.auth-footer {
+  background-color: #f1f1f1; /* light gray background */
+  text-align: center;
+  padding: 15px 20px;
+  font-size: 14px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.auth-footer p {
+  margin: 5px 0;
+  color: #555;
+}
+
+.auth-footer .footer-links {
+  margin-top: 5px;
+}
+
+.auth-footer .footer-links a {
+  text-decoration: none;
+  color: #007bff;
+  margin: 0 5px;
+  transition: color 0.2s;
+}
+
+.auth-footer .footer-links a:hover {
+  color: #0056b3;
+}

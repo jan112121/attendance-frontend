@@ -1,0 +1,33 @@
+<div class="dept-card-grid">
+  <div 
+    class="dept-grid" 
+    *ngFor="let dept of departments"
+    (click)="onDepartmentClick(dept)">
+    
+    <div class="dept-card">
+      <div class="icon-box dept" [ngClass]="getDepartmentClass(dept.name)">
+        <i class="{{ getDepartmentIcon(dept.name) }}"></i>
+      </div>
+
+      <div class="dept-info">
+        <h3>{{ dept.name }}</h3>
+        <p class="progress-text">Attendance Progress</p>
+
+        <div class="mini-chart">
+          <canvas id="dept-{{ dept.id }}"></canvas>
+          <div class="chart-label">
+            {{ dept.attendancePercentage.present || 0 }}%
+          </div>
+        </div>
+
+        <p class="dept-data">
+          <i class="fa-solid fa-users"></i> : {{ dept.present }}
+          &nbsp; | &nbsp;
+          <i class="fa-solid fa-clock"></i> : {{ dept.late }}
+          &nbsp; | &nbsp;
+          <i class="fa-solid fa-user-slash"></i> : {{ dept.absent }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

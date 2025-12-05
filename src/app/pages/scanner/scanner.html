@@ -1,0 +1,29 @@
+<!-- 🧭 Breadcrumb / Page Header -->
+<nav class="breadcrumb">
+  <a routerLink="/records">Attendance Management</a> › 
+  <span class="current">Attendance Scanner</span>
+</nav>
+
+<div class="scanner-container">
+
+  <!-- Video Preview Card -->
+  <div class="video-card">
+    <video id="video" autoplay muted playsinline class="video-preview"></video>
+    <div class="status-message" [ngClass]="{ success: isSuccess, error: isSuccess === false }">
+      <p>{{ message }}</p>
+    </div>
+  </div>
+
+  <!-- Scanned User Info Card -->
+  <div *ngIf="scannedUser" class="scanned-user-card">
+    <h3>👤 Student Info</h3>
+    <ul>
+      <li><strong>Name:</strong> {{ scannedUser.first_name }}</li>
+      <li><strong>ID:</strong> {{ scannedUser.student_number }}</li>
+      <li><strong>Time:</strong> {{ scannedUser.time }}</li>
+      <li><strong>Session:</strong> {{ scannedUser.session }}</li>
+      <li><strong>Status:</strong> {{ scannedUser.status }}</li>
+    </ul>
+  </div>
+
+</div>

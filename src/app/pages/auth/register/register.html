@@ -1,0 +1,107 @@
+<div class="logo">
+  <img src="assets/Logo/aztecScan_logo.png" alt="ascb logo" />
+  <h2>AztecScan</h2>
+</div>
+
+<div class="register-wrapper">
+  <div class="register-container">
+    <form (ngSubmit)="register()" class="register-form">
+      <h2>Create Your Account</h2>
+      <p class="subtitle">Join AztecScan and start managing attendance efficiently.</p>
+      <div class="form-group">
+        <input
+          type="text"
+          [(ngModel)]="first_name"
+          name="first_name"
+          placeholder="First Name"
+          required
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="text"
+          [(ngModel)]="last_name"
+          name="last_name"
+          placeholder="Last Name"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Email or Username"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          [(ngModel)]="studentNumber"
+          name="studentNumber"
+          placeholder="ID No."
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="text"
+          [(ngModel)]="contact_number"
+          name="contact_number"
+          placeholder="Contact Number"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          type="password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          required
+        />
+      </div>
+
+
+      <button type="submit">Register</button>
+
+      <!-- ✅ Aztec Preview -->
+      <div *ngIf="aztecImage" class="aztec-preview">
+        <h3>Your Aztec Code:</h3>
+        <img [src]="aztecImage" alt="Aztec Code" />
+      </div>
+
+      <!-- ✅ Feedback Messages -->
+      <div *ngIf="error" class="error-msg">{{ error }}</div>
+      <div *ngIf="success" class="success-msg">{{ success }}</div>
+
+      <!-- ✅ Back Link -->
+      <p class="login-link">Already have an account? <a routerLink="/login">Back to Login</a></p>
+    </form>
+  </div>
+</div>
+
+<footer class="auth-footer">
+  <div class="footer-content">
+    <p>&copy; 2025 YourCompany. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> |
+      <a href="#">Contact Us</a>
+    </div>
+  </div>
+</footer>

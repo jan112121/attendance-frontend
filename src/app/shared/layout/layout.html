@@ -1,0 +1,19 @@
+<div class="layout" [ngClass]="{ 'collapsed': !sidebarOpen }">
+  <!-- Navbar -->
+  <app-navbar
+    class="navbar"
+    [sidebarOpen]="sidebarOpen"
+    (toggleSidebarEvent)="toggleSidebar($event)">
+  </app-navbar>
+
+  <!-- Body -->
+  <div class="layout-body">
+    <!-- Sidebar -->
+    <app-sidebar [isOpen]="sidebarOpen"></app-sidebar>
+
+    <!-- Main Content -->
+    <main class="layout-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

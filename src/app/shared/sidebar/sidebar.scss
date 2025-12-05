@@ -1,0 +1,192 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; // Menu top, settings bottom
+  height: 100vh;
+  width: 260px;
+  background-color: #0d47a1; // ASC deep blue
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+
+  /* Profile Section */
+  .profile-section {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #1565c0; // Slightly lighter
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 10px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      background: #c2c0c0;
+      border-radius: 50%;
+    }
+
+    .profile-details {
+      display: flex;
+      flex-direction: column;
+
+      .user-name {
+        font-weight: 600;
+        font-size: 16px;
+        margin: 0;
+      }
+
+      .user-role {
+        font-size: 15px;
+        opacity: 0.8;
+        margin: 2px 0;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+
+        .status-icon {
+          font-size: 15px;
+          color: #4caf50;
+          margin-right: 4px;
+          padding: 4px;
+        }
+
+        .status-text {
+          font-size: 12px;
+          opacity: 0.9;
+        }
+      }
+    }
+  }
+
+  /* Collapsed State */
+  &.collapsed {
+    width: 0; // Icon-only width
+
+    .profile-details,
+    .user-role,
+    .status-text {
+      display: none;
+    }
+
+    .dropdown-menu {
+      display: none; // Hide nested menu in collapsed mode
+    }
+  }
+
+  /* Menu List */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-grow: 1;
+
+    li {
+      margin: 0.5rem 0;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        padding: 0.6rem 0.8rem;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+        cursor: pointer;
+
+        &:hover,
+        &.active {
+          background: #1f61c5;
+          color: #fff;
+        }
+
+        mat-icon {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  /* Dropdown Menu */
+  .dropdown-menu {
+    list-style: none;
+    padding-left: 20px;
+    animation: dropdownFade 0.3s ease;
+    background-color: #07306e;
+  }
+
+  .dropdown-toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  mat-icon {
+    transition: transform 0.3s;
+  }
+
+  .rotated {
+    transform: rotate(180deg);
+  }
+
+  /* Bottom Settings */
+  .settings {
+    flex-shrink: 0;
+    padding: 12px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    button {
+      width: 100%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      mat-icon {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .btn-settings{
+    background-color: #0d47a1;
+    border: none;
+    cursor: pointer;
+  }
+  /* Desktop: always visible */
+  @media (min-width: 900px) {
+    left: 0;
+    top: 0;
+    height: 100vh;
+
+    .close-btn {
+      display: none;
+    }
+  }
+
+  /* Mobile: slide-in */
+  @media (max-width: 992px) {
+    width: 250px;
+    top: 60px; // Below navbar
+    height: 100vh;
+  }
+}
+
+/* Dropdown Animation */
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

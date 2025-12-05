@@ -1,0 +1,30 @@
+<div class="attendance-section">
+  <!-- 🩵 Left: Main Attendance Bar Chart -->
+  <div class="attendance-left">
+    <h3 class="section-title">Today's Attendance Overview</h3>
+
+    <div class="attendance-card">
+      <div class="chart-wrapper">
+        <canvas #attendanceChart></canvas>
+      </div>
+
+      <div class="attendance-stats">
+        <p>
+          <i class="fa-solid fa-users"></i>
+          {{ stats?.attendanceBreakdown?.present || 0 }}
+          <span class="bar-present"></span>
+        </p>
+        <p>
+          <i class="fa-solid fa-clock"></i>
+          {{ stats?.attendanceBreakdown?.late || 0 }}
+          <span class="bar-late"></span>
+        </p>
+        <p>
+          <i class="fa-solid fa-user-slash"></i>
+          {{ stats?.attendanceBreakdown?.absent || 0 }}
+          <span class="bar-absent"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>➕ Add New User</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>First Name</mat-label>
+      <input matInput [(ngModel)]="newUser.first_name" name="first_name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Last Name</mat-label>
+      <input matInput [(ngModel)]="newUser.last_name" name="last_name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="newUser.email" name="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Contact Number</mat-label>
+      <input matInput [(ngModel)]="newUser.contact_number" name="contact_number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>ID No.</mat-label>
+      <input matInput [(ngModel)]="newUser.student_number" name="student_number" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Role</mat-label>
+      <mat-select [(ngModel)]="newUser.role_id" name="role" required>
+        <mat-option value="2">Student</mat-option>
+        <mat-option value="5">Teacher</mat-option>
+        <mat-option value="4">Student Council</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Password</mat-label>
+      <input matInput [(ngModel)]="newUser.password" name="password" type="password" required />
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="onSave()">Save</button>
+</mat-dialog-actions>

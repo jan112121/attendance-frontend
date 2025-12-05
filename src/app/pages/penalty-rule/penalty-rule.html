@@ -1,0 +1,36 @@
+<div class="penalty-rules">
+  <h2>⚙️ Penalty Rules</h2>
+
+  <!-- Rules Table -->
+  <div class="rules-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Condition</th>
+          <th>Amount (₱)</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rule of rules">
+          <td><input [(ngModel)]="rule.condition" placeholder="Condition" /></td>
+          <td><input type="number" [(ngModel)]="rule.amount" placeholder="Amount" /></td>
+          <td>
+            <button class="save" (click)="updateRule(rule)">💾 Save</button>
+            <button class="delete" (click)="deleteRule(rule.id)">🗑️ Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Add New Rule -->
+  <div class="add-rule-card">
+    <h3>Add New Rule</h3>
+    <div class="add-rule-form">
+      <input [(ngModel)]="newRule.condition" placeholder="Condition" />
+      <input [(ngModel)]="newRule.amount" type="number" placeholder="Amount" />
+      <button (click)="addRule()">➕ Add Rule</button>
+    </div>
+  </div>
+</div>

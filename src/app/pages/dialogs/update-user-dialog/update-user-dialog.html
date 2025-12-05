@@ -1,0 +1,51 @@
+<h2 mat-dialog-title>Update User</h2>
+
+<form [formGroup]="form">
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="first_name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="last_name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Email</mat-label>
+    <input matInput formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Contact Number</mat-label>
+    <input
+      matInput
+      formControlName="contact_number"
+      maxlength="11"
+      placeholder="09123456789"
+    />
+    <mat-error *ngIf="form.get('contact_number')?.hasError('required')">
+      Contact number is required
+    </mat-error>
+    <mat-error *ngIf="form.get('contact_number')?.hasError('pattern')">
+      Must be a valid 11-digit number
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Role</mat-label>
+    <mat-select formControlName="role_id">
+      <mat-option [value]="1">Admin</mat-option>
+      <mat-option [value]="2">Student</mat-option>
+      <mat-option [value]="5">Teacher</mat-option>
+      <mat-option [value]="4">Student Council</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-button color="primary" (click)="save()">Save</button>
+  </div>
+
+</form>

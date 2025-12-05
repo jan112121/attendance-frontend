@@ -1,0 +1,169 @@
+/* ===== LOGIN COMPONENT SCSS WITH INTERACTIVE ANIMATIONS ===== */
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* ===== LOGO ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  top: 0;
+  animation: fadeInDown 0.8s ease;
+
+  img {
+    width: 50px;
+    animation: bounce 1.2s infinite alternate;
+  }
+
+  h2 {
+    font-size: x-large;
+    margin-left: 0.5rem;
+  }
+}
+
+/* ===== AUTH CONTAINER ===== */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background: #ffffff;
+
+  p { color: #555; }
+  h3 { color: #0056b3; }
+}
+
+/* ===== LOGIN FORM ===== */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 3rem;
+  background-color: #ffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.8s ease;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    color: #0056b3;
+  }
+
+  .form-group {
+    margin-bottom: 1.2rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #444;
+      transition: color 0.3s ease;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #cccccc98;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+        transform: scale(1.02); /* subtle zoom on focus */
+      }
+
+      &:hover {
+        transform: scale(1.01); /* subtle hover zoom */
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 0.9rem;
+    background: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: #0056b3;
+      transform: translateY(-2px) scale(1.02); /* lift + slight zoom */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0) scale(0.98); /* press down effect */
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    &:disabled {
+      background: #a0c4ff;
+      cursor: not-allowed;
+    }
+  }
+
+  .register-link {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+    }
+  }
+
+  .error-msg {
+    background: #fee2e2;
+    color: #b91c1c;
+    margin: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    animation: fadeInUp 0.5s ease;
+  }
+}

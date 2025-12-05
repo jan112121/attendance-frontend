@@ -1,0 +1,86 @@
+<h2 mat-dialog-title>Add Student</h2>
+
+<mat-dialog-content [formGroup]="form" class="space-y-3">
+
+  <!-- Student Number -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Student Number</mat-label>
+    <input matInput formControlName="student_number" />
+  </mat-form-field>
+
+  <!-- First Name -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>First Name</mat-label>
+    <input matInput formControlName="first_name" />
+  </mat-form-field>
+
+  <!-- Last Name -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Last Name</mat-label>
+    <input matInput formControlName="last_name" />
+  </mat-form-field>
+
+  <!-- Parent Name -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Parent Name</mat-label>
+    <input matInput formControlName="parent_name" />
+  </mat-form-field>
+
+  <!-- Parent Number -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Parent No.</mat-label>
+    <input matInput formControlName="parent_number" />
+  </mat-form-field>
+
+  <!-- Parent Email -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Parent Email</mat-label>
+    <input matInput formControlName="parent_email" />
+  </mat-form-field>
+
+  <!-- School Level Dropdown -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>School Level</mat-label>
+    <mat-select 
+      formControlName="school_level_id"
+      (selectionChange)="onSchoolLevelChange($event.value)">
+      <mat-option *ngFor="let s of schoolLevels" [value]="s.id">
+        {{ s.level_name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Grade Dropdown -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Grade</mat-label>
+    <mat-select formControlName="grade_id">
+      <mat-option *ngFor="let g of grades" [value]="g.id">
+        {{ g.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Section -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Section</mat-label>
+    <input matInput formControlName="section" />
+  </mat-form-field>
+
+  <!-- Room Number -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Room Number</mat-label>
+    <input matInput formControlName="room_number" />
+  </mat-form-field>
+
+  <!-- Additional Info -->
+  <mat-form-field appearance="outline" class="w-full">
+    <mat-label>Additional Info</mat-label>
+    <textarea matInput formControlName="additional_info" rows="2"></textarea>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onSave()">Add Student</button>
+</mat-dialog-actions>

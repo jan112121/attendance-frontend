@@ -1,0 +1,73 @@
+<!-- 🧭 Breadcrumb / Page Header -->
+<nav class="breadcrumb">
+  <span class="current">Penalties</span>
+</nav>
+
+<div class="penalty-management">
+  <div class="penalty-card">
+    <table class="penalty-table">
+      <thead>
+        <tr>
+          <th>Student</th>
+          <th>Reason</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Loading State -->
+        <tr *ngIf="loading">
+          <td colspan="5" class="center-text">Loading...</td>
+        </tr>
+
+        <!-- Penalty Rows -->
+        <tr *ngFor="let penalty of penalties">
+          <td>
+            {{ penalty.User ? `${penalty.User.first_name} ${penalty.User.last_name}` : '-' }}
+          </td>
+
+          <!-- Reason -->
+          <td *ngIf="editPenaltyId !== penalty.id">{{ penalty.reason }}</td>
+          <td *ngIf="editPenaltyId === penalty.id">
+            <input [(ngModel)]="editData.reason" />
+          </td>
+
+          <!-- Amount -->
+          <td *ngIf="editPenaltyId !== penalty.id">{{ penalty.amount | currency }}</td>
+          <td *ngIf="editPenaltyId === penalty.id">
+            <input type="number" [(ngModel)]="editData.amount" />
+          </td>
+
+          <!-- Status -->
+          <td *ngIf="editPenaltyId !== penalty.id">{{ penalty.status }}</td>
+          <td *ngIf="editPenaltyId === penalty.id">
+            <select [(ngModel)]="editData.status">
+              <option value="Unpaid">Unpaid</option>
+              <option value="Paid">Paid</option>
+            </select>
+          </td>
+
+          <!-- Actions -->
+          <td class="actions">
+            <button
+              *ngIf="editPenaltyId !== penalty.id"
+              class="btn edit"
+              (click)="startEdit(penalty)"
+            >
+              Edit
+            </button>
+            <button *ngIf="editPenaltyId === penalty.id" class="btn save" (click)="saveEdit()">
+              Save
+            </button>
+            <button *ngIf="editPenaltyId === penalty.id" class="btn cancel" (click)="cancelEdit()">
+              Cancel
+            </button>
+            <button class="btn delete" (click)="deletePenalty(penalty.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+/* ===== DIALOG TITLE ===== */
+.dialog-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.3px;
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    margin: 0.6rem auto 0;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #4e73df, #1cc88a);
+  }
+}
+
+/* ===== CHART CONTAINER ===== */
+.chart-container {
+  width: 100%;
+  max-width: 520px;
+  height: 320px;
+  margin: 0 auto 1.8rem auto;
+  // background: #fff;
+  border-radius: 1rem;
+  // box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(78, 115, 223, 0.15);
+  }
+}
+
+/* ===== INFO CARDS ===== */
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 7px;
+  margin-top: -35px;
+}
+
+.info-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  min-width: 110px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease-in-out;
+  border: 1px solid #eef1f6;
+  cursor: default;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .label {
+    display: block;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+  }
+
+  .value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+  }
+
+  &.present .value {
+    color: #22c55e;
+    background: linear-gradient(135deg, #22c55e20, #16a34a20);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0;
+  }
+
+  &.late .value {
+    color: #fbbf24;
+    background: linear-gradient(135deg, #facc1515, #fbbf2415);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0;
+  }
+
+  &.absent .value {
+    color: #ef4444;
+    background: linear-gradient(135deg, #f8717115, #ef444415);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0;
+  }
+
+  &.rate .value {
+    color: #3b82f6;
+    background: linear-gradient(135deg, #60a5fa15, #3b82f615);
+    border-radius: 0.5rem;
+    padding: 0.3rem 0;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 280px;
+    max-width: 100%;
+  }
+
+  .info-card {
+    min-width: 45%;
+  }
+}
+
+@media (max-width: 480px) {
+  .info-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-card {
+    width: 85%;
+    padding: 0.8rem 1rem;
+  }
+
+  .chart-container {
+    height: 250px;
+    padding: 0.8rem;
+  }
+}

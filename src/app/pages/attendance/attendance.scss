@@ -1,0 +1,263 @@
+/* 🧭 Breadcrumb */
+.breadcrumb {
+  font-size: 1.05rem;
+  color: #555;
+  padding: 1rem 1.5rem 0.5rem;
+  font-weight: 500;
+  position: sticky;
+  top: 64px; /* adjust depending on your navbar height */
+  background: #f9fafb;
+  z-index: 10;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.breadcrumb a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.attendance {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  // 🔹 Title
+  .title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1f2937; // dark gray
+  }
+
+  // 🔹 Topbar: Search + View Toggle + Filters
+  .attendance-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+
+      // Search input
+      .search-wrapper {
+        display: flex;
+        align-items: center;
+        background: #f5f5f5;
+        border-radius: 8px;
+        padding: 0 0.5rem;
+        height: 40px;
+
+        input {
+          border: none;
+          outline: none;
+          background: transparent;
+          padding: 0.5rem;
+          min-width: 200px;
+        }
+
+        button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+
+          mat-icon {
+            font-size: 18px;
+          }
+        }
+      }
+
+      // View toggle buttons
+      .view-toggle {
+        display: flex;
+        gap: 0.5rem;
+
+        button {
+          padding: 0.5rem 1rem;
+          border-radius: 6px;
+          border: 1px solid transparent;
+          background: #e0e0e0;
+          cursor: pointer;
+
+          &.active {
+            background: #1976d2;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      select,
+      input[type='date'] {
+        padding: 0.4rem 0.6rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        height: 38px;
+        background: #fff;
+        font-size: 0.9rem;
+      }
+
+      // Filter action buttons
+      .filter-actions {
+        display: flex;
+        gap: 0.5rem;
+
+        button {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          height: 38px;
+          border-radius: 6px;
+          border: none;
+          cursor: pointer;
+          padding: 0 0.8rem;
+
+          &.btn-apply {
+            background: #1976d2;
+            color: #fff;
+          }
+
+          &.btn-reset {
+            background: #f44336;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  // 🔹 Cards & Tables
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    overflow-x: auto;
+
+    .attendance-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+
+      th {
+        text-align: left;
+        font-weight: 600;
+        color: #374151;
+        padding: 0.75rem;
+        background-color: #f9fafb;
+      }
+
+      td {
+        padding: 0.75rem;
+        color: #4b5563;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+      }
+
+      tr.mat-row:hover {
+        background-color: #f3f4f6;
+      }
+
+      .status-cell {
+        text-transform: capitalize;
+        font-weight: 500;
+
+        &.present {
+          color: #10b981;
+        } // green
+        &.late {
+          color: #f59e0b;
+        } // amber
+        &.absent {
+          color: #ef4444;
+        } // red
+        &.excused {
+          color: #3b82f6;
+        } // blue
+      }
+    }
+  }
+
+  // 🔹 Empty & Loading States
+  .no-data-global,
+  .no-data {
+    text-align: center;
+    color: #6b7280;
+    padding: 2rem 0;
+    font-style: italic;
+  }
+
+  .loading {
+    text-align: center;
+    color: #3b82f6;
+    font-weight: 500;
+    padding: 2rem 0;
+  }
+
+  // 🔹 Responsive
+  @media (max-width: 1024px) {
+    .attendance-topbar {
+      flex-direction: column;
+      align-items: stretch;
+
+      .topbar-left,
+      .topbar-right {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+
+      .search-wrapper,
+      select,
+      input[type='date'],
+      .filter-actions button {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+
+  @media (max-width: 640px) {
+    .attendance-table {
+      td,
+      th {
+        padding: 0.5rem;
+      }
+
+      th:first-child,
+      td:first-child {
+        min-width: 120px;
+      }
+    }
+
+    .view-toggle button {
+      padding: 0.25rem 0.75rem;
+      font-size: 0.875rem;
+    }
+
+    .filter-actions button {
+      min-width: 36px;
+      min-height: 36px;
+    }
+  }
+}

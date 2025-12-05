@@ -1,0 +1,142 @@
+/* 🧭 Breadcrumb */
+.breadcrumb {
+  font-size: 2rem;
+  color: #555;
+  padding: 1rem 1.5rem 0.5rem;
+  font-weight: 500;
+  position: sticky;
+  top: 64px; /* adjust depending on your navbar height */
+  background: #f9fafb;
+  z-index: 10;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.breadcrumb a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb .current {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.penalty-management {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .penalty-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    overflow-x: auto;
+    padding: 1rem;
+
+    .penalty-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 8px;
+
+      th {
+        text-align: left;
+        font-weight: 600;
+        color: #374151;
+        padding: 0.75rem;
+        background-color: #f9fafb;
+      }
+
+      td {
+        padding: 0.75rem;
+        color: #4b5563;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+
+        input,
+        select {
+          width: 100%;
+          padding: 0.4rem 0.6rem;
+          border-radius: 6px;
+          border: 1px solid #ccc;
+        }
+      }
+
+      tr:hover {
+        background-color: #f3f4f6;
+      }
+
+      .actions {
+        display: flex;
+        gap: 0.4rem;
+
+        .btn {
+          padding: 0.4rem 0.8rem;
+          border-radius: 6px;
+          border: none;
+          font-size: 0.85rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          &.edit {
+            background: #fbbf24;
+            color: #fff;
+          }
+          &.save {
+            background: #10b981;
+            color: #fff;
+          }
+          &.cancel {
+            background: #9ca3af;
+            color: #fff;
+          }
+          &.delete {
+            background: #ef4444;
+            color: #fff;
+          }
+        }
+      }
+    }
+
+    .center-text {
+      text-align: center;
+      font-style: italic;
+      color: #6b7280;
+    }
+  }
+
+  // Responsive
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .penalty-card {
+      padding: 0.8rem;
+
+      .penalty-table {
+        td,
+        th {
+          padding: 0.5rem;
+          font-size: 0.875rem;
+        }
+
+        .actions .btn {
+          padding: 0.3rem 0.6rem;
+          font-size: 0.75rem;
+        }
+      }
+    }
+  }
+}

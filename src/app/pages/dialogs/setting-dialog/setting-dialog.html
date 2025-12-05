@@ -1,0 +1,27 @@
+<div class="settings-page">
+  <header class="settings-header">
+    <h2>⚙️ Settings</h2>
+    <p>Customize your preferences below.</p>
+  </header>
+
+  <div class="settings-list">
+    <mat-card class="setting-item" *ngFor="let item of settingItems">
+      <div class="item-info">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+
+      <div class="toggle-wrapper" (click)="toggle(item)">
+        <div class="custom-toggle" [class.active]="item.enabled">
+          <div class="circle"></div>
+        </div>
+        <span class="status-text" [class.on]="item.enabled">{{ item.enabled ? 'ON' : 'OFF' }}</span>
+      </div>
+    </mat-card>
+  </div>
+
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="saveSettings()">Save Changes</button>
+    <button mat-stroked-button color="warn">Cancel</button>
+  </div>
+</div>

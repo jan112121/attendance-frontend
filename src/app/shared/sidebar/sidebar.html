@@ -1,0 +1,89 @@
+<aside class="sidebar" [class.collapsed]="!isOpen" *ngIf="authService.currentUser as user">
+  
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <img [src]="user.profilePicture || 'assets/Icons/user_default.png'" alt="Profile" />
+    <div class="profile-details" *ngIf="isOpen">
+      <p class="user-name">{{ user.name }}</p>
+      <div class="status">
+        <mat-icon class="status-icon">circle</mat-icon>
+        <span class="status-text">Online</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu -->
+  <ul class="menu">
+
+    <!-- Admin Menu -->
+    <ng-container *ngIf="user.role_id === 1">
+      <li>
+        <a routerLink="/dashboard">
+          <mat-icon>dashboard</mat-icon>
+          <span *ngIf="isOpen">Dashboard</span>
+        </a>
+      </li>
+
+      <!-- Records Management Dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" (click)="toggleDropdown('records')">
+          <mat-icon>manage_accounts</mat-icon>
+          <span *ngIf="isOpen">Records Management</span>
+          <mat-icon [class.rotated]="recordsDropdownOpen">expand_more</mat-icon>
+        </a>
+        <ul class="dropdown-menu" *ngIf="recordsDropdownOpen && isOpen">
+          <li><a routerLink="/users">User Management</a></li>
+          <li><a routerLink="/master-list">Student Record</a></li>
+        </ul>
+      </li>
+
+      <!-- Attendance Management Dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" (click)="toggleDropdown('attendance')">
+          <mat-icon>access_time</mat-icon>
+          <span *ngIf="isOpen">Attendance Management</span>
+          <mat-icon [class.rotated]="attendanceDropdownOpen">expand_more</mat-icon>
+        </a>
+        <ul class="dropdown-menu" *ngIf="attendanceDropdownOpen && isOpen">
+          <li><a routerLink="/attendance">Attendance Records</a></li>
+          <li><a routerLink="/scanner">Scan Attendance</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a routerLink="/admin/penalties">
+          <mat-icon>rule</mat-icon>
+          <span *ngIf="isOpen">Penalties</span>
+        </a>
+      </li>
+    </ng-container>
+
+    <!-- Student Menu -->
+    <ng-container *ngIf="user.role_id === 2">
+      <li><a routerLink="/student-dashboard"><mat-icon>home</mat-icon><span *ngIf="isOpen">Dashboard</span></a></li>
+      <li><a routerLink="/attendance"><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a></li>
+      <li><a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a></li>
+    </ng-container>
+
+    <!-- Teacher Menu -->
+    <ng-container *ngIf="user.role_id === 5">
+      <li><a routerLink="/teacher-dashboard"><mat-icon>menu_book</mat-icon><span *ngIf="isOpen">Dashboard</span></a></li>
+      <li><a routerLink="/attendance"><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a></li>
+      <li><a routerLink="/scanner"><mat-icon>qr_code_scanner</mat-icon> Scan Attendance</a></li>
+      <li><a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a></li>
+    </ng-container>
+
+  </ul>
+
+  <!-- Bottom Settings -->
+  <div class="settings">
+    <ul>
+      <li>
+        <button class="btn-settings" (click)="openSettingDialog()">
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="isOpen">Settings</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+</aside>

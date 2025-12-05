@@ -1,0 +1,84 @@
+<div class="student-dashboard" *ngIf="student; else loading">
+  <!-- Info Section -->
+  <div class="info-section">
+    <h2>Hello, {{ student.first_name }} {{ student.last_name }}</h2>
+
+    <div class="info-cards">
+      <div class="info-card">
+        <span class="label">Student No</span>
+        <span class="value">{{ student.student_number }}</span>
+      </div>
+      <div class="info-card">
+        <span class="label">Grade</span>
+        <span class="value">{{ student.grade }}</span>
+      </div>
+      <div class="info-card">
+        <span class="label">Section</span>
+        <span class="value">{{ student.section }}</span>
+      </div>
+      <div class="info-card">
+        <span class="label">Room</span>
+        <span class="value">{{ student.room_number }}</span>
+      </div>
+    </div>
+    <!-- Attendance Summary -->
+    <div class="attendance-summary">
+      <div class="attendance-card" *ngFor="let session of sessions">
+        <h3>{{ session | titlecase }}</h3>
+
+        <div class="status-wrapper" *ngFor="let status of statuses">
+          <div class="status-label">
+            {{ status | titlecase }}: {{ summary[session][status] || 0 }}
+          </div>
+          <div class="progress-bar">
+            <div
+              class="progress"
+              [ngClass]="status"
+              [style.width.px]="summary[session][status] * 20"
+            >
+              <!-- each count = 20px width -->
+              {{ summary[session][status] || 0 }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Penalty Card -->
+    <div class="penalty-card">
+      <h3>Penalty</h3>
+      <div class="status-wrapper">
+        <div class="status-label">
+          Total Penalty: {{ summary.morning.penalty + summary.afternoon.penalty }}
+        </div>
+        <div class="progress-bar">
+          <div
+            class="progress penalty"
+            [style.width.px]="(summary.morning.penalty + summary.afternoon.penalty) * 20"
+          >
+            {{ summary.morning.penalty + summary.afternoon.penalty }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- My Code Section -->
+  <div class="code-section">
+    <h2>My Code</h2>
+    <div class="aztec-code-container">
+      <img
+        *ngIf="student.aztec_code_image; else codeText"
+        [src]="student.aztec_code_image"
+        alt="Aztec Code"
+      />
+      <ng-template #codeText>
+        <div class="aztec-code-text">{{ student.aztec_code || student.student_number }}</div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="loading">Loading student dashboard...</div>
+</ng-template>

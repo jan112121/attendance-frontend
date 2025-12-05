@@ -1,0 +1,14 @@
+<div class="success-container">
+  <h2>🎉 Registration Successful!</h2>
+  <p>Please save your Aztec code below:</p>
+  @if (aztecImage) {
+  <div>
+    <img [src]="aztecImage" alt="Your Aztec Code" />
+    <br />
+    <a [href]="aztecImage" download="aztec-code.png" class="btn btn-primary">Download Code</a>
+  </div>
+
+  }
+
+  <button (click)="goToLogin()" class="btn btn-success">Go to Login</button>
+</div>

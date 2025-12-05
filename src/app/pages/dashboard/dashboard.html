@@ -1,0 +1,77 @@
+<!-- 🧭 Breadcrumb / Page Header -->
+<nav class="breadcrumb">
+  <span class="current">Dashboard</span>
+</nav>
+
+<div class="dashboard-container">
+
+  <!-- 🔹 Summary Cards -->
+  <div class="stats-grid">
+    <!-- Total Students -->
+    <div class="stat-card">
+      <div class="icon-box students"><i class="fas fa-user-graduate"></i></div>
+      <div class="stat-info">
+        <h4>Total Students</h4>
+        <p>{{ stats.totalStudent || 0 }}</p>
+      </div>
+    </div>
+
+    <!-- Present Today -->
+    <div class="stat-card">
+      <div class="icon-box attendance"><i class="fas fa-calendar-check"></i></div>
+      <div class="stat-info">
+        <h4>Present Today</h4>
+        <p>{{ stats.presentToday || 0 }}</p>
+      </div>
+    </div>
+
+    <!-- Late Today -->
+    <div class="stat-card">
+      <div class="icon-box late"><i class="fas fa-clock"></i></div>
+      <div class="stat-info">
+        <h4>Late Today</h4>
+        <p>{{ stats.lateToday || 0 }}</p>
+      </div>
+    </div>
+
+    <!-- Absent Today -->
+    <div class="stat-card">
+      <div class="icon-box absent"><i class="fas fa-user-slash"></i></div>
+      <div class="stat-info">
+        <h4>Absent Today</h4>
+        <p>{{ stats.absentToday || 0 }}</p>
+      </div>
+    </div>
+
+    <!-- Total Users -->
+    <div class="stat-card">
+      <div class="icon-box user"><i class="fas fa-users"></i></div>
+      <div class="stat-info">
+        <h4>Total Users</h4>
+        <p>{{ stats.totalUsers || 0 }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Department Overview -->
+  <h3>Department Attendance Overview</h3>
+
+  <section class="dept-section" *ngIf="departments.length > 0">
+    <app-doughnut-chart
+      [departments]="departments"
+      (departmentClick)="openDepartmentDetails($event)"
+    ></app-doughnut-chart>
+  </section>
+
+  <!-- 🔹 Overall Attendance Chart -->
+  <h3>Overall Attendance</h3>
+
+  <section class="chart-section">
+    <div class="chart-left">
+      <app-bar-chart [stats]="stats"></app-bar-chart>
+    </div>
+    <div class="chart-right">
+      <app-line-chart [weeklyAttendance]="weeklyAttendance"></app-line-chart>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,20 @@
+<h2 mat-dialog-title class="dialog-title">{{ data.name }} Department</h2>
+
+<div class="chart-container">
+  <canvas id="deptBarChart"></canvas>
+</div>
+
+<div class="info-cards">
+  <div class="info-card present">
+    <span class="label">Present</span>
+    <span class="value">{{ data.present }}</span>
+  </div>
+  <div class="info-card late">
+    <span class="label">Late</span>
+    <span class="value">{{ data.late || 0 }}</span>
+  </div>
+  <div class="info-card absent">
+    <span class="label">Absent</span>
+    <span class="value">{{ data.absent }}</span>
+  </div>
+</div>
