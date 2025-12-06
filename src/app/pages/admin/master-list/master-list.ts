@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { AddStudentDialog } from '../../dialogs/add-student-dialog/add-student-dialog';
+import { environment } from '../../../../environments/environments';
 
 export interface MasterListCnt {
   id?: number;
@@ -87,7 +88,7 @@ export class MasterList implements OnInit {
   loading = false;
   filterValue = '';
   importText = '';
-  apiUrl = 'http://localhost:5000/api/master-list';
+  apiUrl = `${environment.apiUrl}/api/master-list`;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

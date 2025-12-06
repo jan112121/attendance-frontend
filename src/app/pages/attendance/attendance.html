@@ -109,18 +109,6 @@
               </td>
             </ng-container>
 
-            <!-- Penalty -->
-            <ng-container matColumnDef="penalty">
-              <th mat-header-cell *matHeaderCellDef>Penalty</th>
-              <td mat-cell *matCellDef="let record">{{ getPenaltyAmount(record) }}</td>
-            </ng-container>
-
-            <!-- Penalty Status -->
-            <ng-container matColumnDef="penaltyStatus">
-              <th mat-header-cell *matHeaderCellDef>Penalty Status</th>
-              <td mat-cell *matCellDef="let record">{{ getPenaltyStatus(record) }}</td>
-            </ng-container>
-
             <!-- Time Out -->
             <ng-container matColumnDef="time_out">
               <th mat-header-cell *matHeaderCellDef>Time Out</th>
@@ -178,14 +166,6 @@
               >
                 {{ record.status | titlecase }}
               </td>
-            </ng-container>
-            <ng-container matColumnDef="penalty">
-              <th mat-header-cell *matHeaderCellDef>Penalty</th>
-              <td mat-cell *matCellDef="let record">{{ getPenaltyAmount(record) }}</td>
-            </ng-container>
-            <ng-container matColumnDef="penaltyStatus">
-              <th mat-header-cell *matHeaderCellDef>Penalty Status</th>
-              <td mat-cell *matCellDef="let record">{{ getPenaltyStatus(record) }}</td>
             </ng-container>
             <ng-container matColumnDef="time_out">
               <th mat-header-cell *matHeaderCellDef>Time Out</th>

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environments';
 
 @Component({
   selector: 'app-edit-student-dialog',
@@ -53,7 +54,7 @@ export class EditStudentDialog implements OnInit {
 
   ngOnInit(): void {
     // Fetch school levels
-    this.http.get('http://localhost:5000/api/school-levels').subscribe((res: any) => {
+    this.http.get(`${environment.apiUrl}/api/school-levels`).subscribe((res: any) => {
       this.schoolLevels = res;
     });
 
@@ -64,7 +65,7 @@ export class EditStudentDialog implements OnInit {
         this.form.get('grade_id')?.setValue(null);
         return;
       }
-      this.http.get(`http://localhost:5000/api/grades/by-level/${levelId}`).subscribe((res: any) => {
+      this.http.get(`${environment.apiUrl}/api/grades/by-level/${levelId}`).subscribe((res: any) => {
         this.grades = res;
         // Reset grade if it doesn't belong to selected level
         const currentGrade = this.form.get('grade_id')?.value;

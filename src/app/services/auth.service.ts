@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   currentUser: any = null;
 
-  private apiUrl = '/api/auth';
+  private apiUrl = `${environment.apiUrl}/api/auth`;
 
   constructor(private http: HttpClient) {
     // ✅ Restore user from localStorage when app reloads

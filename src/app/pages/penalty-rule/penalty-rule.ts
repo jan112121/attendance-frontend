@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environments';
 
 @Component({
   selector: 'app-penalty-rule',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class PenaltyRules implements OnInit {
   rules: any[] = [];
   newRule = { condition: '', amount: '' };
-  apiUrl = 'http://localhost:5000/api/penalty-rules';
+  apiUrl = `${environment.apiUrl}/api/penalty-rules`;
 
   constructor(private http: HttpClient) {}
 

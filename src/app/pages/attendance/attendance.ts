@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environments';
 
 // Angular Material
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,9 +25,11 @@ interface AttendanceRecord {
   time_out?: string;
   status: string;
   session: string;
-  user: {
+  User: {
     id?: number;
-    name: string;
+    first_name: string;
+    last_name: string;
+    name?: string; // optional if you want a combined field
     student_number: string;
     grade?: string;
     section?: string;
@@ -37,9 +40,13 @@ interface AttendanceRecord {
       status?: string;
       created_at?: string;
     }[];
+    master?: {
+      grade_level?: string;
+      section?: string;
+      room_number?: string;
+    };
   };
 }
-
 
 @Component({
   selector: 'app-attendance',
@@ -62,16 +69,7 @@ interface AttendanceRecord {
   styleUrls: ['./attendance.scss'],
 })
 export class Attendance implements OnInit, AfterViewInit {
-  displayedColumns: string[] = [
-    'first_name',
-    'last_name',
-    'section',
-    'time',
-    'status',
-    'penalty',
-    'penaltyStatus',
-    'time_out',
-  ];
+  displayedColumns: string[] = ['first_name', 'last_name', 'section', 'time', 'status', 'time_out'];
 
   morningDataSource = new MatTableDataSource<AttendanceRecord>([]);
   afternoonDataSource = new MatTableDataSource<AttendanceRecord>([]);
@@ -92,7 +90,10 @@ export class Attendance implements OnInit, AfterViewInit {
   @ViewChild('morningPaginator') morningPaginator!: MatPaginator;
   @ViewChild('afternoonPaginator') afternoonPaginator!: MatPaginator;
 
-  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private http: HttpClient,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     this.loadAttendance();
@@ -109,7 +110,10 @@ export class Attendance implements OnInit, AfterViewInit {
   /** Load attendance based on viewMode */
   loadAttendance(): void {
     this.loading = true;
-    const url = this.viewMode === 'today' ? '/api/attendance/today' : '/api/attendance/yesterday';
+    const url =
+      this.viewMode === 'today'
+        ? `${environment.apiUrl}/api/attendance/today`
+        : `${environment.apiUrl}/api/attendance/yesterday`;
 
     this.http.get<AttendanceRecord[]>(url).subscribe({
       next: (records) => {
@@ -160,10 +164,10 @@ export class Attendance implements OnInit, AfterViewInit {
     // Status filter
     if (this.selectedStatus) {
       filteredMorning = filteredMorning.filter(
-        (r) => r.status?.toLowerCase() === this.selectedStatus.toLowerCase()
+        (r) => r.status?.toLowerCase() === this.selectedStatus.toLowerCase(),
       );
       filteredAfternoon = filteredAfternoon.filter(
-        (r) => r.status?.toLowerCase() === this.selectedStatus.toLowerCase()
+        (r) => r.status?.toLowerCase() === this.selectedStatus.toLowerCase(),
       );
     }
 
@@ -171,10 +175,10 @@ export class Attendance implements OnInit, AfterViewInit {
     if (this.selectedDate) {
       const dateStr = new Date(this.selectedDate).toISOString().split('T')[0];
       filteredMorning = filteredMorning.filter(
-        (r) => new Date(r.date).toISOString().split('T')[0] === dateStr
+        (r) => new Date(r.date).toISOString().split('T')[0] === dateStr,
       );
       filteredAfternoon = filteredAfternoon.filter(
-        (r) => new Date(r.date).toISOString().split('T')[0] === dateStr
+        (r) => new Date(r.date).toISOString().split('T')[0] === dateStr,
       );
     }
 
@@ -212,33 +216,22 @@ export class Attendance implements OnInit, AfterViewInit {
     return `${hour}:${minute} ${ampm}`;
   }
 
-  /** Penalty helpers */
-  getPenaltyAmount(record: AttendanceRecord): string {
-    if (!record.user?.penalties?.length) return '-';
-    return record.user.penalties  .reduce((sum, p) => sum + (p.amount || 0), 0).toString();
-  }
-
-  getPenaltyStatus(record: AttendanceRecord): string {
-    if (!record.user?.penalties?.length) return '-';
-    return record.user.penalties.map((p) => p.status).join(', ');
-  }
-
   applySearchFilter() {
     const term = this.searchTerm.toLowerCase().trim();
 
     // Reset to original before filtering
     this.morningDataSource.data = this.originalRecords.morning.filter(
       (record) =>
-        record.user?.name?.toLowerCase().includes(term) ||
-        record.user?.section?.toLowerCase().includes(term) ||
-        record.user?.grade?.toLowerCase().includes(term)
+        record.User?.first_name?.toLowerCase().includes(term) ||
+        record.User?.last_name?.toLowerCase().includes(term) ||
+        record.User?.master?.section?.toLowerCase().includes(term),
     );
 
     this.afternoonDataSource.data = this.originalRecords.afternoon.filter(
       (record) =>
-        record.user?.name?.toLowerCase().includes(term) ||
-        record.user?.section?.toLowerCase().includes(term) ||
-        record.user?.grade?.toLowerCase().includes(term)
+        record.User?.first_name?.toLowerCase().includes(term) ||
+        record.User?.last_name?.toLowerCase().includes(term) ||
+        record.User?.master?.section?.toLowerCase().includes(term),
     );
   }
 

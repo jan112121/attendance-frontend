@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../environments/environments';
 
 @Component({
   selector: 'app-add-student-dialog',
@@ -29,7 +30,7 @@ export class AddStudentDialog {
   schoolLevels: any[] = [];
   grades: any[] = [];
 
-  apiUrl = 'http://localhost:5000/api/master-list'; // backend endpoint
+  apiUrl = `${environment.apiUrl}/api/master-list`; // backend endpoint
 
   constructor(
     private fb: FormBuilder,
@@ -55,7 +56,7 @@ export class AddStudentDialog {
   }
 
   loadSchoolLevels() {
-    this.http.get<any[]>('http://localhost:5000/api/school-levels').subscribe({
+    this.http.get<any[]>(`${environment.apiUrl}/api/school-levels`).subscribe({
       next: (res) => (this.schoolLevels = res),
       error: () => this.snackBar.open('Failed to load school levels', 'Close', { duration: 3000 }),
     });
@@ -63,7 +64,7 @@ export class AddStudentDialog {
 
   onSchoolLevelChange(levelId: number) {
     this.form.patchValue({ grade_id: null });
-    this.http.get<any[]>(`http://localhost:5000/api/grades/by-level/${levelId}`).subscribe({
+    this.http.get<any[]>(`${environment.apiUrl}/api/grades/by-level/${levelId}`).subscribe({
       next: (res) => (this.grades = res),
       error: () => this.snackBar.open('Failed to load grades', 'Close', { duration: 3000 }),
     });

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 @Injectable({ providedIn: 'root' })
 export class ArchiveReportsService {
-  private apiUrl = '/api/archive-reports';
+  private apiUrl = `${environment.apiUrl}/api/archive-reports`;
 
   constructor(private http: HttpClient) {}
 
