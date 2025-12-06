@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
@@ -32,6 +32,21 @@ export class Sidebar {
     this.isOpen = !this.isOpen;
   }
 
+  // Check screen width and update isOpen
+  checkScreenWidth(): void {
+    if (window.innerWidth <= 768) {
+      this.isOpen = false; // close on mobile
+    } else {
+      this.isOpen = true; // open on desktop
+    }
+  }
+  
+  // Listen to window resize to update sidebar automatically
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenWidth();
+  }
+
   /** Toggle dropdown menus */
   toggleDropdown(type: 'records' | 'attendance'): void {
     if (type === 'records') {
@@ -50,6 +65,6 @@ export class Sidebar {
   }
 
   openSettingDialog() {
-    this.dialog.open(SettingDialog, { width: '500px', });
+    this.dialog.open(SettingDialog, { width: '500px' });
   }
 }

@@ -37,7 +37,7 @@ export class Login {
         localStorage.setItem('user', JSON.stringify(res.user));
 
         // ✅ Role-based redirect
-        console.log('User data:', res.user);
+        // console.log('User data:', res.user);
         this.auth.currentUser = res.user; // Set current user
         if (res.user.role_id === 1) {
           this.router.navigate(['/dashboard']);

@@ -1,9 +1,9 @@
-import { Routes,RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { Login } from './pages/auth/login/login';
 import { Register } from './pages/auth/register/register';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Attendance } from './pages/attendance/attendance';
-import { Users } from "./pages/users/users";
+import { Users } from './pages/users/users';
 import { authGuard } from './services/guards/auth.guard';
 import { RegisterSuccess } from './pages/register-success/register-success';
 import { StudentDashboard } from './pages/student-dashboard/student-dashboard';
@@ -12,13 +12,18 @@ import { ScannerComponent } from './pages/scanner/scanner';
 import { PenaltyManagement } from './pages/penalty-management/penalty-management';
 import { Layout } from './shared/layout/layout';
 import { MasterList } from './pages/admin/master-list/master-list';
-
+import { PrivacyPolicy } from './pages/privacy-policy/privacy-policy';
+import { ContactUs } from './pages/contact-us/contact-us';
+import { TermOfService } from './pages/term-of-service/term-of-service';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
   // Public pages (no layout)
   { path: 'login', component: Login },
+  { path: 'privacy-policy', component: PrivacyPolicy },
+  { path: 'terms-of-service', component: TermOfService },
+  { path: 'contact-us', component: ContactUs },
   { path: 'register', component: Register },
   { path: 'register-success', component: RegisterSuccess },
 
@@ -35,10 +40,10 @@ export const routes: Routes = [
       { path: 'attendance', component: Attendance },
       { path: 'users', component: Users },
       { path: 'admin/penalties', component: PenaltyManagement },
-      {path: 'master-list', component: MasterList},
-    ]
+      { path: 'master-list', component: MasterList },
+    ],
   },
 
   // Wildcard fallback
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'login' },
 ];
