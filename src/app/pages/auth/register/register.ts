@@ -65,7 +65,7 @@ export class Register implements OnInit {
 
     this.auth.register(user).subscribe({
       next: (res) => {
-        console.log('Registration success:', res);
+        // console.log('Registration success:', res);
         this.aztecImage = res.aztecImage;
         this.success = 'Registration successful! Redirecting...';
         this.router.navigate(['/register-success'], {
