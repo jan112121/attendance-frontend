@@ -24,8 +24,13 @@
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 /* ===== LOGO ===== */
@@ -33,7 +38,9 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  position: absolute;
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
   top: 0;
   animation: fadeInDown 0.8s ease;
 
@@ -56,8 +63,12 @@
   height: 90vh;
   background: #ffffff;
 
-  p { color: #555; }
-  h3 { color: #0056b3; }
+  p {
+    color: #555;
+  }
+  h3 {
+    color: #0056b3;
+  }
 }
 
 /* ===== LOGIN FORM ===== */
@@ -94,7 +105,10 @@
       border: 1px solid #cccccc98;
       border-radius: 8px;
       font-size: 1rem;
-      transition: border 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      transition:
+        border 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.2s ease;
 
       &:focus {
         border-color: #007bff;
@@ -119,7 +133,10 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      background 0.3s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
 
     &:hover:not(:disabled) {
       background: #0056b3;
