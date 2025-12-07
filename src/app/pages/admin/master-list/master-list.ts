@@ -118,7 +118,7 @@ export class MasterList implements OnInit {
     this.http.post<any>(`${this.apiUrl}/upload`, formData).subscribe({
       next: (res) => {
         this.spinnerLoading = false;
-        this.message = `${res.message} (${res.addedCount ?? 0}) records imported.`;
+        this.message = `${res.message} (${res.totalProcessed ?? 0}) records imported.`;
         this.success = true;
         this.snackBar.open('Import Successful!', 'Close', {
           duration: 3000,
