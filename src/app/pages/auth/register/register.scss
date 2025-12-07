@@ -2,18 +2,35 @@
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeInDown {
-  0% { opacity: 0; transform: translateY(-20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 /* ===== LOGO ===== */
@@ -21,7 +38,10 @@
   display: flex;
   align-items: center;
   padding: 20px;
-  position: absolute;
+  position: relative;
+  margin-bottom: 20px;
+  margin-top: 0;
+  width: 100%;
   top: 0;
   animation: fadeInDown 0.8s ease;
 
@@ -41,7 +61,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f9fafb;
+  // background: #f9fafb;
   height: 95vh;
   padding: 20px;
 }
@@ -141,7 +161,10 @@
   .aztec-preview {
     margin-top: 30px;
 
-    h3 { color: #0f766e; margin-bottom: 10px; }
+    h3 {
+      color: #0f766e;
+      margin-bottom: 10px;
+    }
 
     img {
       width: 120px;
@@ -160,8 +183,14 @@
     animation: fadeInUp 0.5s ease;
   }
 
-  .error-msg { background: #fee2e2; color: #b91c1c; }
-  .success-msg { background: #dcfce7; color: #15803d; }
+  .error-msg {
+    background: #fee2e2;
+    color: #b91c1c;
+  }
+  .success-msg {
+    background: #dcfce7;
+    color: #15803d;
+  }
 
   .login-link {
     margin-top: 25px;
@@ -174,12 +203,17 @@
       text-decoration: none;
       transition: color 0.3s ease;
 
-      &:hover { text-decoration: underline; color: #002b58; }
+      &:hover {
+        text-decoration: underline;
+        color: #002b58;
+      }
     }
   }
 }
 
 /* ===== MOBILE ADJUSTMENTS ===== */
 @media (max-width: 600px) {
-  .register-container { padding: 40px 25px; }
+  .register-container {
+    padding: 40px 25px;
+  }
 }
