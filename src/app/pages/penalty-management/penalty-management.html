@@ -35,7 +35,9 @@
           </td>
 
           <!-- Amount -->
-          <td *ngIf="editPenaltyId !== penalty.id">{{ penalty.amount | currency }}</td>
+          <td *ngIf="editPenaltyId !== penalty.id">
+            {{ penalty.amount | currency: 'PHP' : 'symbol' : '1.2-2' }}
+          </td>
           <td *ngIf="editPenaltyId === penalty.id">
             <input type="number" [(ngModel)]="editData.amount" />
           </td>
