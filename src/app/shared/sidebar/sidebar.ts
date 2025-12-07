@@ -15,7 +15,7 @@ import { SettingDialog } from '../../pages/dialogs/setting-dialog/setting-dialog
   styleUrls: ['./sidebar.scss'], // ✅ corrected
 })
 export class Sidebar {
-  @Input() isOpen: boolean = true; // controls collapsed/expanded
+  @Input() isOpen: boolean = false; // controls collapsed/expanded
 
   // Dropdown states
   recordsDropdownOpen = false;
