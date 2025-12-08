@@ -46,17 +46,14 @@
 
     <!-- Penalty Card -->
     <div class="penalty-card">
-      <h3>Penalty</h3>
+      <h3>Total Unpaid Penalty</h3>
+
       <div class="status-wrapper">
-        <div class="status-label">
-          Total Penalty: {{ summary.morning.penalty + summary.afternoon.penalty }}
-        </div>
+        <div class="status-label">Total Penalty: &#8369;{{ penaltyTotal }}</div>
+
         <div class="progress-bar">
-          <div
-            class="progress penalty"
-            [style.width.px]="(summary.morning.penalty + summary.afternoon.penalty) * 20"
-          >
-            {{ summary.morning.penalty + summary.afternoon.penalty }}
+          <div class="progress penalty" [style.width.px]="penaltyTotal * 20">
+            {{ penaltyTotal }}
           </div>
         </div>
       </div>

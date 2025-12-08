@@ -16,6 +16,9 @@ export class StudentDashboard implements OnInit {
     morning: { present: 0, late: 0, absent: 0 },
     afternoon: { present: 0, late: 0, absent: 0 },
   };
+
+  penaltyTotal: number = 0;   // <--- NEW
+
   activeTab: string = 'info';
   showWelcome: boolean = true;
 
@@ -45,6 +48,9 @@ export class StudentDashboard implements OnInit {
         if (res.success) {
           this.student = res.student;
           this.summary = res.summary || this.summary;
+
+          // NEW: Get unpaid penalty total
+          this.penaltyTotal = res.penalties?.unpaid_total || 0;
         }
       },
       error: (err) => console.error(err),
