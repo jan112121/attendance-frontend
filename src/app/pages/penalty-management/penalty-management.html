@@ -53,6 +53,7 @@
 
           <!-- Actions -->
           <td class="actions">
+            <!-- Edit / Save / Cancel Buttons -->
             <button
               *ngIf="editPenaltyId !== penalty.id"
               class="btn edit"
@@ -66,7 +67,19 @@
             <button *ngIf="editPenaltyId === penalty.id" class="btn cancel" (click)="cancelEdit()">
               Cancel
             </button>
+
+            <!-- Delete Button -->
             <button class="btn delete" (click)="deletePenalty(penalty.id)">Delete</button>
+
+            <!-- ✅ Mark as Paid Button -->
+            <button
+              *ngIf="penalty.status !== 'paid'"
+              class="btn paid"
+              (click)="markAsPaid(penalty.id)"
+            >
+              Mark as Paid
+            </button>
+            <span *ngIf="penalty.status === 'paid'" class="paid-label">Paid ✅</span>
           </td>
         </tr>
       </tbody>

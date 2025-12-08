@@ -6,9 +6,9 @@ import { PenaltyRules } from '../penalty-rule/penalty-rule';
 
 @Component({
   selector: 'app-penalty-management',
-  imports: [CommonModule, FormsModule,NgFor],
+  imports: [CommonModule, FormsModule, NgFor],
   templateUrl: './penalty-management.html',
-  styleUrl: './penalty-management.scss'
+  styleUrl: './penalty-management.scss',
 })
 export class PenaltyManagement implements OnInit {
   penalties: any[] = [];
@@ -30,7 +30,6 @@ export class PenaltyManagement implements OnInit {
       },
       error: (err) => console.error(err),
     });
-
   }
 
   startEdit(penalty: any) {
@@ -60,5 +59,16 @@ export class PenaltyManagement implements OnInit {
         error: (err) => console.error(err),
       });
     }
+  }
+  markAsPaid(id: number) {
+    if (!confirm('Are you sure you want to mark this penalty as paid?')) return;
+
+    this.penaltyService.markAsPaid(id).subscribe({
+      next: () => {
+        // Reload penalties to update the table
+        this.loadPenalties();
+      },
+      error: (err) => console.error(err),
+    });
   }
 }
