@@ -3,6 +3,8 @@
   <app-navbar [sidebarOpen]="sidebarOpen" (toggleSidebarEvent)="toggleSidebar($event)">
   </app-navbar>
 
+  <!-- Overlay for mobile -->
+  <div class="sidebar-overlay" *ngIf="sidebarOpen && isMobile" (click)="toggleSidebar(false)"></div>
   <!-- Sidebar -->
   <app-sidebar [isOpen]="sidebarOpen" [class.open]="sidebarOpen"> </app-sidebar>
 

@@ -24,10 +24,20 @@ export class Layout {
     this.sidebarOpen = state !== undefined ? state : !this.sidebarOpen;
   }
 
-  @HostListener('window:resize')
-  onResize() {
-    this.innerWidth = window.innerWidth;
-    this.updateSidebarState();
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    // Only on mobile/tablet
+    if (!this.isMobile || !this.sidebarOpen) return;
+
+    const target = event.target as HTMLElement;
+
+    // Check if the click is inside the sidebar or toggle button
+    const clickedInsideSidebar = target.closest('.sidebar');
+    const clickedToggleButton = target.closest('.navbar button');
+
+    if (!clickedInsideSidebar && !clickedToggleButton) {
+      this.sidebarOpen = false; // close sidebar
+    }
   }
 
   private updateSidebarState() {
@@ -45,4 +55,3 @@ export class Layout {
     return this.innerWidth < 992;
   }
 }
-
