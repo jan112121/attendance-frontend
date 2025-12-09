@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { PenaltyService } from '../../services/penalty.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { PenaltyRules } from '../penalty-rule/penalty-rule';
 
 @Component({
   selector: 'app-penalty-management',
-  imports: [CommonModule, FormsModule, NgFor],
+  imports: [CommonModule, FormsModule],
   templateUrl: './penalty-management.html',
   styleUrl: './penalty-management.scss',
 })
