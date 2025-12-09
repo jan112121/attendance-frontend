@@ -81,15 +81,14 @@
   transition: all 0.3s ease;
 }
 
-/* Sidebar */
 app-sidebar {
   position: fixed;
   top: 0;
   left: 0;
   width: 260px;
   height: 100vh;
-  transition: width 0.3s ease;
-  z-index: 999;
+  transition: all 0.3s ease;
+  z-index: 1000; // above overlay
 }
 
 /* Overlay for mobile */
@@ -99,7 +98,7 @@ app-sidebar {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); // semi-transparent black
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 999; // below sidebar
   transition: opacity 0.3s ease;
 }
