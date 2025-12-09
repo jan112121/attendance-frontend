@@ -1,19 +1,13 @@
-<div class="layout" [ngClass]="{ 'collapsed': !sidebarOpen }">
+<div class="layout" [ngClass]="{ collapsed: !sidebarOpen, mobile: isMobile }">
   <!-- Navbar -->
-  <app-navbar
-    class="navbar"
-    [sidebarOpen]="sidebarOpen"
-    (toggleSidebarEvent)="toggleSidebar($event)">
+  <app-navbar [sidebarOpen]="sidebarOpen" (toggleSidebarEvent)="toggleSidebar($event)">
   </app-navbar>
 
-  <!-- Body -->
-  <div class="layout-body">
-    <!-- Sidebar -->
-    <app-sidebar [isOpen]="sidebarOpen"></app-sidebar>
+  <!-- Sidebar -->
+  <app-sidebar [isOpen]="sidebarOpen" [class.open]="sidebarOpen"> </app-sidebar>
 
-    <!-- Main Content -->
-    <main class="layout-content">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
+  <!-- Main content -->
+  <main class="layout-content">
+    <router-outlet></router-outlet>
+  </main>
 </div>

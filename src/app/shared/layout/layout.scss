@@ -5,33 +5,60 @@
   width: 100%;
   background-color: #f9fafb;
   transition: all 0.3s ease;
+  top: 60px;
 
   /* Navbar */
   .navbar {
-    position: relative;
+    position: fixed;
     top: 0;
-    left: 250px; // default sidebar width
-    width: calc(100% - 250px);
+    left: 260px; // default sidebar width
+    width: calc(100% - 260px);
     height: 60px;
     background-color: #fff;
     z-index: 1000;
     transition: all 0.3s ease;
   }
 
-  /* When sidebar is collapsed */
+  /* Sidebar collapsed */
   &.collapsed {
     .navbar {
-      left: 70px; // collapsed sidebar width
-      width: calc(100% - 70px);
-    }
-
-    .layout-content {
-      margin-left: 0;
-      width: calc(100% - 70px);
+      left: 0; // collapsed sidebar or mobile
+      width: 100%;
     }
 
     app-sidebar {
       width: 0;
+    }
+
+    .layout-content {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+
+  /* Mobile */
+  &.mobile {
+    .navbar {
+      left: 0;
+      width: 100%;
+    }
+
+    app-sidebar {
+      position: fixed;
+      top: 60px;
+      left: -260px; // hidden by default
+      width: 260px;
+      height: calc(100% - 60px);
+      transition: left 0.3s ease;
+
+      &.open {
+        left: 0;
+      }
+    }
+
+    .layout-content {
+      margin-left: 0;
+      width: 100%;
     }
   }
 }
@@ -41,53 +68,26 @@
   display: flex;
   flex: 1;
   width: 100%;
-  height: 100%;
-  margin-top: 60px; // push down for fixed navbar
-}
-
-/* Sidebar */
-app-sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100vh;
-  width: 250px;
-  // background-color: #002b7f;
-  z-index: 999;
-  transition: all 0.3s ease;
+  margin-top: 60px;
 }
 
 /* Main content */
 .layout-content {
   flex: 1;
-  margin-left: 250px;
+  margin-left: 260px;
   padding: 1rem;
   background-color: #f9fafb;
   min-height: calc(100vh - 60px);
   transition: all 0.3s ease;
-  // overflow-y: auto;
 }
 
-/* ✅ Responsive (Mobile/Tablet) */
-@media (max-width: 992px) {
-  .layout {
-    .navbar {
-      left: 0;
-      width: 100%;
-    }
-
-    .layout-content {
-      margin-left: 0;
-      width: 100%;
-    }
-
-    app-sidebar {
-      // transform: translateX(-100%);
-      width: 250px;
-    }
-
-    &.collapsed app-sidebar {
-      transform: translateX(0);
-    }
-  }
+/* Sidebar */
+app-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  transition: width 0.3s ease;
+  z-index: 999;
 }

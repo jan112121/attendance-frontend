@@ -1,40 +1,32 @@
-<nav class="navbar" [ngClass]="{ collapsed: !sidebarOpen }">
+<nav class="navbar" [ngClass]="{ collapsed: !sidebarOpen, mobile: isMobile }">
   <div class="navbar-header">
+    <!-- Sidebar Toggle Button -->
     <button (click)="toggleSidebar()">
-      <mat-icon>menu_open</mat-icon>
+      <mat-icon>{{ sidebarOpen ? 'menu_open' : 'menu' }}</mat-icon>
     </button>
 
-    
-    <h3><span><img src="assets/Logo/aztecScan_logo.png" alt="ASCB Logo" /></span> AzteScan</h3>
+    <!-- Logo and Title -->
+    <h3>
+      <span><img src="assets/Logo/aztecScan_logo.png" alt="ASCB Logo" /></span>
+      AzteScan
+    </h3>
   </div>
 
-  <div class="navbar-container">
-    <!-- Notifications & Profile -->
-    <!-- <div class="nav-notifications" *ngIf="authService.currentUser as user">
-      <div class="message">
-        <mat-icon>message</mat-icon>
-      </div>
-      <div class="info">
-        <mat-icon>info</mat-icon>
-      </div>
-      <div class="notification">
-        <mat-icon>notifications</mat-icon>
-      </div>
-    </div> -->
-
-    <div class="nav-actions" *ngIf="authService.currentUser as user">
+  <div class="navbar-container" *ngIf="authService.currentUser as user">
+    <div class="nav-actions">
+      <!-- Profile Section -->
       <div class="profile" (click)="toggleProfileMenu()">
         <div class="profile-icon">
           <img [src]="user.profilePicture || 'assets/Icons/user_default.png'" alt="Profile" />
         </div>
-        <div class="profile-user">
+        <div class="profile-user" *ngIf="!isMobile">
           <p class="user-name">{{ user.name }}</p>
         </div>
         <div class="dropdown-icon">
           <mat-icon>keyboard_arrow_down</mat-icon>
         </div>
 
-        <!-- Dropdown Menu -->
+        <!-- Profile Dropdown -->
         <div class="profile-dropdown" *ngIf="showProfileMenu">
           <a (click)="logout()">Logout</a>
         </div>

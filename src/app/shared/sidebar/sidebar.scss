@@ -4,20 +4,21 @@
   justify-content: space-between; // Menu top, settings bottom
   height: 100vh;
   width: 260px;
-  background-color: #0d47a1; // ASC deep blue
+  background-color: #0d47a1; // Deep blue
   color: white;
   position: fixed;
   top: 0;
   left: 0;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
+  transform: translateX(0);
 
   /* Profile Section */
   .profile-section {
     display: flex;
     align-items: center;
     padding: 20px;
-    background-color: #1565c0; // Slightly lighter
+    background-color: #1565c0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     gap: 10px;
 
@@ -64,9 +65,9 @@
     }
   }
 
-  /* Collapsed State */
+  /* Collapsed State (desktop) */
   &.collapsed {
-    width: 0; // Icon-only width
+    width: 70px;
 
     .profile-details,
     .user-role,
@@ -75,7 +76,7 @@
     }
 
     .dropdown-menu {
-      display: none; // Hide nested menu in collapsed mode
+      display: none;
     }
   }
 
@@ -103,7 +104,6 @@
         &:hover,
         &.active {
           background: #1f61c5;
-          color: #fff;
         }
 
         mat-icon {
@@ -155,27 +155,37 @@
     }
   }
 
-  .btn-settings{
+  .btn-settings {
     background-color: #0d47a1;
     border: none;
     cursor: pointer;
   }
+
   /* Desktop: always visible */
-  @media (min-width: 900px) {
+  @media (min-width: 992px) {
     left: 0;
     top: 0;
     height: 100vh;
 
-    .close-btn {
-      display: none;
+    &.collapsed {
+      transform: translateX(-100%); // slide out of view
+    }
+
+    &.open {
+      transform: translateX(0); // slide in
     }
   }
 
-  /* Mobile: slide-in */
-  @media (max-width: 992px) {
+  /* Tablet & Mobile: slide-in overlay */
+  @media (max-width: 991px) {
     width: 250px;
-    top: 60px; // Below navbar
+    top: 60px; // below navbar
     height: 100vh;
+    transform: translateX(-100%); // hidden by default
+
+    &.open {
+      transform: translateX(0);
+    }
   }
 }
 

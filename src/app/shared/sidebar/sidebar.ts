@@ -4,7 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { SettingDialog } from '../../pages/dialogs/setting-dialog/setting-dialog';
 
 @Component({
@@ -15,7 +15,7 @@ import { SettingDialog } from '../../pages/dialogs/setting-dialog/setting-dialog
   styleUrls: ['./sidebar.scss'], // ✅ corrected
 })
 export class Sidebar {
-  @Input() isOpen: boolean = false; // controls collapsed/expanded
+  @Input() isOpen: boolean = true; // controls collapsed/expanded
 
   // Dropdown states
   recordsDropdownOpen = false;
@@ -26,26 +26,6 @@ export class Sidebar {
     private router: Router,
     private dialog: MatDialog,
   ) {}
-
-  /** Toggle sidebar collapsed/expanded */
-  toggleSidebar(): void {
-    this.isOpen = !this.isOpen;
-  }
-
-  // Check screen width and update isOpen
-  checkScreenWidth(): void {
-    if (window.innerWidth <= 768) {
-      this.isOpen = false; // close on mobile
-    } else {
-      this.isOpen = true; // open on desktop
-    }
-  }
-  
-  // Listen to window resize to update sidebar automatically
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.checkScreenWidth();
-  }
 
   /** Toggle dropdown menus */
   toggleDropdown(type: 'records' | 'attendance'): void {

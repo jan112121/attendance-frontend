@@ -1,4 +1,4 @@
-<aside class="sidebar" [class.collapsed]="!isOpen" *ngIf="authService.currentUser as user">
+<aside class="sidebar" [ngClass]="{ 'collapsed': !isOpen, 'open': isOpen }" *ngIf="authService.currentUser as user">
   
   <!-- Profile Section -->
   <div class="profile-section">
