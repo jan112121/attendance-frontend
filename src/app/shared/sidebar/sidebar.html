@@ -90,13 +90,13 @@
         >
       </li>
       <li>
-        <a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a>
-      </li>
-      <li>
         <a routerLink="/admin/penalties">
           <mat-icon>rule</mat-icon>
           <span *ngIf="isOpen">Penalties</span>
         </a>
+      </li>
+      <li>
+        <a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a>
       </li>
     </ng-container>
 
