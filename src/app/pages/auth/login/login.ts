@@ -50,7 +50,7 @@ login() {
         case 4: // Student Council
           this.router.navigate(['/student-dashboard']);
           break;
-        case 3: // Teacher
+        case 5: // Teacher
           this.router.navigate(['/teacher-dashboard']);
           break;
         default: // fallback
