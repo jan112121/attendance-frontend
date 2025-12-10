@@ -19,46 +19,40 @@ export class Login {
 
   constructor(private auth: AuthService, private router: Router) {}
 
-login() {
-  if (!this.email || !this.password) {
-    this.error = 'Email and password are required';
-    return;
-  }
+  login() {
+    if (!this.email || !this.password) {
+      this.error = 'Email and password are required';
+      return;
+    }
 
-  this.loading = true;
-  this.error = '';
+    this.loading = true;
+    this.error = '';
 
-  const credentials = { email: this.email, password: this.password };
+    const credentials = { email: this.email, password: this.password };
 
-  this.auth.login(credentials).subscribe({
-    next: (res: any) => {
-      this.loading = false;
-      localStorage.setItem('token', res.token);
-      localStorage.setItem('user', JSON.stringify(res.user));
+    this.auth.login(credentials).subscribe({
+      next: (res: any) => {
+        this.loading = false;
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
 
-      // ✅ Role-based redirect
-      this.auth.currentUser = res.user; // Set current user
-
-      switch (res.user.role_id) {
-        case 1: // Admin
+        // ✅ Role-based redirect
+        // console.log('User data:', res.user);
+        this.auth.currentUser = res.user; // Set current user
+        if (res.user.role_id === 1) {
           this.router.navigate(['/dashboard']);
-          break;
-        case 2: // Student
-        case 4: // Student Council
+        } else if (res.user.role_id === 2) {
           this.router.navigate(['/student-dashboard']);
-          break;
-        case 3: // Teacher
+        }else if (res.user.role_id === 4) {
+          this.router.navigate(['/student-council-dashboard']);
+        }else{
           this.router.navigate(['/teacher-dashboard']);
-          break;
-        default: // Fallback
-          this.router.navigate(['/login']);
-      }
-    },
-    error: (err) => {
-      this.loading = false;
-      this.error = err.error.message || 'Login failed';
-    },
-  });
-}
-
+        }
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = err.error.message || 'Login failed';
+      },
+    });
+  }
 }

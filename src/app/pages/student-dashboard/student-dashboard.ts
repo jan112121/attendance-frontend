@@ -12,8 +12,6 @@ import { ApiService } from '../../services/api.service';
 })
 export class StudentDashboard implements OnInit {
   student: any = null;
-  isStudentOrCouncil: boolean = false;
-
   summary: any = {
     morning: { present: 0, late: 0, absent: 0 },
     afternoon: { present: 0, late: 0, absent: 0 },
@@ -33,12 +31,7 @@ export class StudentDashboard implements OnInit {
   ) {}
 
   ngOnInit() {
-    const role = this.authService.currentUser?.role_id;
-    this.isStudentOrCouncil = [2,4].includes(role);
-
-    if (this.isStudentOrCouncil){
-      this.loadDashboard();
-    }
+    this.loadDashboard();
 
     // Hide welcome after 3 seconds
     setTimeout(() => {

@@ -61,7 +61,7 @@
     </ng-container>
 
     <!-- Student Menu -->
-    <ng-container *ngIf="user.role_id === 2 || user.role_id === 4">
+    <ng-container *ngIf="user.role_id === 2">
       <li>
         <a routerLink="/student-dashboard"
           ><mat-icon>home</mat-icon><span *ngIf="isOpen">Dashboard</span></a
@@ -73,8 +73,20 @@
         >
       </li>
       <li>
-        <a routerLink="admin/penalties"
-          ><mat-icon>rule</mat-icon> <span *ngIf="isOpen">Penalties</span></a
+        <a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a>
+      </li>
+    </ng-container>
+
+    <!-- Student Council Menu -->
+    <ng-container *ngIf="user.role_id === 4">
+      <li>
+        <a routerLink="/student-dashboard"
+          ><mat-icon>home</mat-icon><span *ngIf="isOpen">Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a routerLink="/attendance"
+          ><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a
         >
       </li>
       <li>
