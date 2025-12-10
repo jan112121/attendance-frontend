@@ -1,5 +1,8 @@
-<aside class="sidebar" [ngClass]="{ 'collapsed': !isOpen, 'open': isOpen }" *ngIf="authService.currentUser as user">
-  
+<aside
+  class="sidebar"
+  [ngClass]="{ collapsed: !isOpen, open: isOpen }"
+  *ngIf="authService.currentUser as user"
+>
   <!-- Profile Section -->
   <div class="profile-section">
     <img [src]="user.profilePicture || 'assets/Icons/user_default.png'" alt="Profile" />
@@ -14,7 +17,6 @@
 
   <!-- Menu -->
   <ul class="menu">
-
     <!-- Admin Menu -->
     <ng-container *ngIf="user.role_id === 1">
       <li>
@@ -59,20 +61,46 @@
     </ng-container>
 
     <!-- Student Menu -->
-    <ng-container *ngIf="user.role_id === 2">
-      <li><a routerLink="/student-dashboard"><mat-icon>home</mat-icon><span *ngIf="isOpen">Dashboard</span></a></li>
-      <li><a routerLink="/attendance"><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a></li>
-      <li><a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a></li>
+    <ng-container *ngIf="user.role_id === 2 || user.role_id === 4">
+      <li>
+        <a routerLink="/student-dashboard"
+          ><mat-icon>home</mat-icon><span *ngIf="isOpen">Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a routerLink="/attendance"
+          ><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a
+        >
+      </li>
+      <li>
+        <a routerLink="admin/penalties"
+          ><mat-icon>rule</mat-icon> <span *ngIf="isOpen">Penalties</span></a
+        >
+      </li>
+      <li>
+        <a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a>
+      </li>
     </ng-container>
 
     <!-- Teacher Menu -->
     <ng-container *ngIf="user.role_id === 5">
-      <li><a routerLink="/teacher-dashboard"><mat-icon>menu_book</mat-icon><span *ngIf="isOpen">Dashboard</span></a></li>
-      <li><a routerLink="/attendance"><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a></li>
-      <li><a routerLink="/scanner"><mat-icon>qr_code_scanner</mat-icon> Scan Attendance</a></li>
-      <li><a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a></li>
+      <li>
+        <a routerLink="/teacher-dashboard"
+          ><mat-icon>menu_book</mat-icon><span *ngIf="isOpen">Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a routerLink="/attendance"
+          ><mat-icon>access_time</mat-icon><span *ngIf="isOpen">Attendance</span></a
+        >
+      </li>
+      <li>
+        <a routerLink="/scanner"><mat-icon>qr_code_scanner</mat-icon> Scan Attendance</a>
+      </li>
+      <li>
+        <a (click)="logout()"><mat-icon>logout</mat-icon><span *ngIf="isOpen">Logout</span></a>
+      </li>
     </ng-container>
-
   </ul>
 
   <!-- Bottom Settings -->

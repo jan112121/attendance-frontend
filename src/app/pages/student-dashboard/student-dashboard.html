@@ -1,4 +1,4 @@
-<div class="student-dashboard" *ngIf="student; else loading">
+<div class="student-dashboard" *ngIf="isStudentOrCouncil; else loading">
   <!-- Info Section -->
   <div class="info-section">
     <h2>Hello, {{ student.first_name }} {{ student.last_name }}</h2>
