@@ -52,7 +52,6 @@ export class Users implements OnInit {
     'email',
     'contact_number',
     'role',
-    'status',
     'created_at',
     'actions',
   ];
